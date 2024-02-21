@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Dancing Script", cursive;
+  font-family: "Open Sans", sans-serif;
+  background: #d8f8e1;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  font-size: 40px;
+  color: rgb(56, 56, 56);
+}
+
+#date {
+  text-align: center;
+  color: rgb(163, 162, 162);
+  font-weight: normal;
+  font-size: 30px;
+}
+
+.container {
+  width: 700px;
+  background: white;
+  padding: 20px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.access {
+  color: rgb(71, 132, 223);
+}
+
+.dni {
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 30px;
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.entry {
+  background: #84b6f4;
+  width: 100%;
+  padding: 25px 35px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.exit {
+  background: #ff6961;
+  width: 100%;
+  padding: 25px 35px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
