@@ -1,24 +1,35 @@
-<?php 
+<?php
 if (!empty($_POST["btnModify"])) {
-    if (!empty($_POST["txtId"]) and !empty($_POST["txtName"]) and !empty($_POST["txtSurnames"]) and !empty($_POST["txtPost"])) {
-        $id=$_POST["txtId"];
-        $name=$_POST["txtName"];
-        $surname=$_POST["txtSurnames"];
-        $post=$_POST["txtPost"];
-        $sql=$connect->query("update empleado set nombre='$name', apellido='$surname', cargo=$post where id_empleado=$id");
-        if ($sql==true) { ?>
+    if (!empty($_POST["txtId"]) and !empty($_POST["txtName"]) ) {
+        $id = $_POST["txtId"];
+        $name = $_POST["txtName"];
+        $verifyName= $connect->query("select count(*) as 'total' from cargo where nombre='$name' and id_cargo=$id");
+        if ($verifyName->fetch_object()->total > 0) { ?>
             <script>
                     $(function notification(){
                         new PNotify({
-                            title: "CORRECT",
-                            type: "success",
-                            text: "The employee has been modified successfully",
+                            title: "INCORRECT",
+                            type: "error",
+                            text: "The post <?= $name ?> already exists",
                             styling: "bootstrap3"
                         })
                     })
                 </script>
-        <?php } else { ?>
-            <script>
+        <?php } else { 
+            $sql=$connect->query("update cargo set nombre = '$name' where id_cargo=$id");
+            if ($sql==true) { ?>
+                <script>
+                    $(function notification(){
+                        new PNotify({
+                            title: "CORRECT",
+                            type: "success",
+                            text: "The post has been modified successfully",
+                            styling: "bootstrap3"
+                        })
+                    })
+                </script>
+            <?php } else { ?>
+                <script>
                     $(function notification(){
                         new PNotify({
                             title: "INCORRECT",
@@ -28,7 +39,9 @@ if (!empty($_POST["btnModify"])) {
                         })
                     })
                 </script>
-        <?php }
+            <?php }
+            
+         }
         
     } else { ?>
         <script>
@@ -48,6 +61,7 @@ if (!empty($_POST["btnModify"])) {
     }, 0);
 </script>
 <?php }
+
 
 
 ?>

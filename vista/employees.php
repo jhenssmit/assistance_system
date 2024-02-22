@@ -27,6 +27,7 @@ if(empty($_SESSION['name']) and empty($_SESSION["lastName"])){
     <?php 
         include "../model/connection.php";
         include "../controller/controller_modify_employee.php";
+        include "../controller/controller_deleted_employee.php";
         $sql=$connect->query("SELECT 
         empleado.id_empleado,
         empleado.nombre,
@@ -62,7 +63,7 @@ while ($data = $sql->fetch_object()) {
             <!-- Enlace para editar -->
             <a href="edit_user.php?id=<?= $data->id_empleado ?>" data-toggle="modal" data-target="#exampleModal<?= $data->id_empleado?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
             <!-- Enlace para eliminar (como lo tienes actualmente) -->
-            <a href="users.php?id=<?= $data->id_empleado ?>" onclick="warning(event)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+            <a href="employees.php?id=<?= $data->id_empleado ?>" onclick="warning(event)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
         </td>
     </tr>
 
@@ -88,7 +89,7 @@ while ($data = $sql->fetch_object()) {
                 <input type="text" placeholder="&nbsp;&nbsp;&nbsp;Surnames" class="input input__text" name="txtSurnames" value="<?= $data->apellido ?>"><br><br>
             </div>
             <div class="fl-flex-label mb-4 px-2 col-12 ">
-                <select name="txtChange" class="input input__select">
+                <select name="txtPost" class="input input__select">
                     <?php 
                     $sql2=$connect->query("select * from cargo");
                     while ($datas2=$sql2->fetch_object()){ ?>
@@ -99,7 +100,7 @@ while ($data = $sql->fetch_object()) {
             </div>
             <div class="text-right">
                 <a href="employees.php" class="btn btn-secondary btn-rounded">back</a>
-                <button type="submit" value="ok" class="btn btn-primary btn-rounded" name="btnModify" style="margin: 12px;">Register</button>
+                <button type="submit" value="ok" class="btn btn-primary btn-rounded" name="btnModify" style="margin: 12px;">Modify</button>
             </div>
         </form>
         </div>
